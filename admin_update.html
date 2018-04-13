@@ -1,0 +1,421 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <!--====== USEFULL META ======-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Creative Portfolio & Agency Template is a simple Smooth Personal Portfolio and Agency Based Template" />
+    <meta name="keywords" content="Personal, Portfolio, Agency, Onepage, Html, Business" />
+
+    <!--====== TITLE TAG ======-->
+    <title>SalesPro</title>
+
+    <!--====== FAVICON ICON =======-->
+   
+
+    <!--====== STYLESHEETS ======-->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/stellarnav.min.css">
+    <link rel="stylesheet" href="css/progressbar.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--====== MAIN STYLESHEETS ======-->
+    <link href="style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+         <style>
+         .custom-select {
+  position: relative;
+  font-family: Arial;
+}
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+.select-selected {
+  background-color: DodgerBlue;
+}
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+.select-items div:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+         * {
+  box-sizing: border-box;
+}
+
+/* Style the search field */
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+#myInput {
+    border-box: box-sizing;
+    background-image: url('searchicon.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd}
+
+.show {display:block;}
+</style>
+</head>
+
+<body data-spy="scroll" data-target=".mainmenu-area" data-offset="90">
+
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--- PRELOADER -->
+    <div class="preeloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <!--SCROLL TO TOP-->
+    <a href="#home" class="scrolltotop"><i class="fa fa-long-arrow-up"></i></a>
+
+    <!--START TOP AREA-->
+    <header class="top-area" id="home">
+        
+        <div class="header-top-area">
+            <!--MAINMENU AREA-->
+            <div class="mainmenu-area" id="mainmenu-area">
+                <div class="mainmenu-area-bg"></div>
+                <nav class="navbar">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="#home" class="navbar-brand"><img src="img/logo.png" alt="logo"></a>
+                        </div>
+                        <div id="main-nav" class="stellarnav">
+                            <ul id="nav" class="nav navbar-nav">
+                                <li class="active"><a href="admin.html">home</a></li>
+                               
+                                <li><a href="login.html">Log out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <!--END MAINMENU AREA END-->
+        </div>
+    </header>
+    <!--END TOP AREA-->
+
+   <section class="team-area padding-100-70" id="team">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 col-sm-12 col-xs-12">
+
+                <center>
+                    <table style = "width: 100%"> 
+                        <tr><th><h3><p>Look up </p></h3></th>
+                            <th><div class="custom-select" style="width:200px;">
+                                  <select>
+                                    <option value="0">Attribute</option>
+                                    <option value="1">Date</option>
+                                    <option value="2">Custmer_ID</option>
+                                    <option value="3">Stock_Code</option>
+                                   
+                                  </select>
+                                </div>
+                            </th>
+
+                            <th><form class="example" action="action_page.php">
+                                  <input type="text" placeholder="Enter new Value.." name="Update">
+                                  
+                                </form></th>
+                        </tr>
+                        <tr>
+                                <th><h3><p>And update </p></h3></th>
+                                <th><div class="custom-select" style="width:200px;">
+                                  <select>
+                                    <option value="0">Attribute</option>
+                                    <option value="1">Date</option>
+                                    <option value="2">Custmer_ID</option>
+                                    <option value="3">Stock_Code</option>
+                                   
+                                  </select>
+                                </div>
+                            </th>
+                             <th><form class="example" action="action_page.php">
+                                  <input type="text" placeholder="Enter new Value.." name="Update">
+                                  
+                                </form></th>
+
+                        </tr>   
+
+                        <tr>
+                            <th> </th>
+                        </tr>    
+                    </table> 
+                    
+                <br><br>
+                </center>
+                    
+                      
+
+
+                     <form class="example" action="action_page.php">
+                      
+                      <button type="submit"><i class="fa fa-edit">Update</i></button>
+                    </form>   
+                    </div>
+                </div>
+            </div>
+            </section>
+           
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+
+    <!--====== PLUGINS JS ======-->
+    <script src="js/vendor/jquery.easing.1.3.js"></script>
+    <script src="js/vendor/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/vendor/jquery.appear.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/stellar.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/stellarnav.min.js"></script>
+    <script src="js/contact-form.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+
+function clickeddate(){
+    document.getElementById("searchfilter").innerHTML = "date";
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function clickedprice(){
+    document.getElementById("searchfilter").innerHTML = "price";
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function clickedcounrtry(){
+    document.getElementById("searchfilter").innerHTML = "country";
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function clickeditem(){
+    document.getElementById("searchfilter").innerHTML = "item";
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+</script>
+<script>
+var x, i, j, selElmnt, a, b, c;
+/*look for any elements with the class "custom-select":*/
+x = document.getElementsByClassName("custom-select");
+for (i = 0; i < x.length; i++) {
+  selElmnt = x[i].getElementsByTagName("select")[0];
+  /*for each element, create a new DIV that will act as the selected item:*/
+  a = document.createElement("DIV");
+  a.setAttribute("class", "select-selected");
+  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+  x[i].appendChild(a);
+  /*for each element, create a new DIV that will contain the option list:*/
+  b = document.createElement("DIV");
+  b.setAttribute("class", "select-items select-hide");
+  for (j = 1; j < selElmnt.length; j++) {
+    /*for each option in the original select element,
+    create a new DIV that will act as an option item:*/
+    c = document.createElement("DIV");
+    c.innerHTML = selElmnt.options[j].innerHTML;
+    c.addEventListener("click", function(e) {
+        /*when an item is clicked, update the original select box,
+        and the selected item:*/
+        var i, s, h;
+        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+        h = this.parentNode.previousSibling;
+        for (i = 0; i < s.length; i++) {
+          if (s.options[i].innerHTML == this.innerHTML) {
+            s.selectedIndex = i;
+            h.innerHTML = this.innerHTML;
+            break;
+          }
+        }
+        h.click();
+    });
+    b.appendChild(c);
+  }
+  x[i].appendChild(b);
+  a.addEventListener("click", function(e) {
+      /*when the select box is clicked, close any other select boxes,
+      and open/close the current select box:*/
+      e.stopPropagation();
+      closeAllSelect(this);
+      this.nextSibling.classList.toggle("select-hide");
+      this.classList.toggle("select-arrow-active");
+    });
+}
+function closeAllSelect(elmnt) {
+  /*a function that will close all select boxes in the document,
+  except the current select box:*/
+  var x, y, i, arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  for (i = 0; i < y.length; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i)
+    } else {
+      y[i].classList.remove("select-arrow-active");
+    }
+  }
+  for (i = 0; i < x.length; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+    }
+  }
+}
+/*if the user clicks anywhere outside the select box,
+then close all select boxes:*/
+document.addEventListener("click", closeAllSelect);
+</script>
+
+    <!--===== ACTIVE JS=====-->
+    <script src="js/main.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTS_KEDfHXYBslFTI_qPJIybDP3eceE-A&sensor=false"></script>
+    <script src="js/maps.active.js"></script>
+</body>
+
+</html>
