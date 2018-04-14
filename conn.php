@@ -1,3 +1,11 @@
+<html>
+<title>
+    DBMS Project
+</title>
+<body>
+科技肥肉价格i人jog忍痛割肉、
+</body>
+
 <?php
 /**
  * Created by PhpStorm.
@@ -42,4 +50,6 @@ print "</table>\n";
 
 oci_free_statement($stid);
 oci_close($conn);
+?>
+</html>
 
