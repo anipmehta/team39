@@ -56,13 +56,13 @@
 
 
                     <p>
-                        <input class="w3-radio" type="radio" name="gender" value="Customer" checked>
+                        <input class="w3-radio" type="radio" name="user" value="Customer" checked>
                         <label>Customer</label></p>
                     <p>
-                        <input class="w3-radio" type="radio" name="gender" value="Seller">
+                        <input class="w3-radio" type="radio" name="user" value="Merchandise">
                         <label>Merchandise</label></p>
                     <p>
-                        <input class="w3-radio" type="radio" name="gender" value="Admin" >
+                        <input class="w3-radio" type="radio" name="user" value="Admin" >
                         <label>Admin</label></p>
 
                 <div class="container-login100-form-btn">
