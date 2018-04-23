@@ -5,9 +5,12 @@
  * Date: 4/14/2018
  * Time: 11:29 AM
  */
+session_start();
 $user = $_POST['username'];
 $pass = $_POST['pass'];
 $type = $_POST['user'];
+$_SESSION['userId'] = null;
+
 $conn = oci_connect($username = 'chuan', $password = 'UNCBiostat2018!', $connection_string = '//oracle.cise.ufl.edu/orcl');
 
 if (!$conn) {
@@ -18,23 +21,27 @@ echo $type;
 $query = null;
 $execute = null;
 $row = null;
+echo $pass;
+//echo "SELECT * FROM MERCHANDISE WHERE STOCKCODE =\"".$user."\" AND PASSCODE=\"".$pass."\"";
 if($type == 'Admin'){
-    echo $user;
-    echo $pass;
-    $query = oci_parse($conn, "SELECT * FROM SUPERUSER WHERE ID=".$user."AND PASSCODE=".$pass);
+    $query = oci_parse($conn, "SELECT * FROM ADMIN WHERE ADMIN_ID='".$user."' AND PASSCODE='".$pass."'");
     $execute = oci_execute($query);
     $row = oci_num_rows($execute);
-    echo "rfegrgfe".$row;
 }
-elseif ($type == 'Merchandise'){
-    $query = oci_parse($conn, "SELECT * FROM MERCHANDISE WHERE STOCKCODE=".$user."AND PASSCODE=".$pass);
+else if ($type == 'Merchandise'){
+    $query = oci_parse($conn, "SELECT * FROM MERCHANDISE WHERE STOCKCODE='".$user."' AND PASSCODE='".$pass."'");
     $execute = oci_execute($query);
     $row = oci_num_rows($execute);
 }
 else{
-    $query = oci_parse($conn, "SELECT * FROM ".$type." WHERE CUSTOMER_ID=".$user."AND PASSCODE=".$pass);
+    $query = oci_parse($conn, "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID=".$user." AND PASSCODE='".$pass."'");
     $execute = oci_execute($query);
     $row = oci_num_rows($execute);
+}
+
+$i = 0;
+while (oci_fetch_array($query, OCI_ASSOC+OCI_RETURN_NULLS)) {
+    $i = $i + 1;
 }
 
 // Prepare the statement
@@ -42,8 +49,9 @@ else{
 echo $execute;
 echo $execute;
 if($type=='Customer'){
-    if($execute>0) {
-        header('Location: http://localhost:63342/team39/customer.html?_ijt=jna571ddv0b1ct882kri1h59q2');
+    if($execute>0 and $i == 1) {
+        $_SESSION['userId'] = $user;
+        header('Location: http://localhost:63342/team39/customer_view.php');
         echo "Login success with username " . $user . "and password " . $pass;
     }
     else {
@@ -51,9 +59,9 @@ if($type=='Customer'){
     }
 }
 else if($type=='Admin'){
-    echo "admin ". $execute;
-    if($execute>0) {
-        header('Location: http://localhost:63342/team39/admin.html?_ijt=jna571ddv0b1ct882kri1h59q2');
+    if($execute>0 and $i == 1) {
+        $_SESSION['userId'] = $user;
+        header('Location: http://localhost:63342/team39/admin_search.php');
         echo "Login success with username " . $user . "and password " . $pass;
     }
     else {
@@ -61,7 +69,12 @@ else if($type=='Admin'){
     }
 }
 else if($type=='Merchandise') {
-    header('Location: http://localhost:63342/team39/merchandise.html?_ijt=jna571ddv0b1ct882kri1h59q2');
+    $_SESSION['userId'] = $user;
+    if($execute>0 and $i == 1) {
+        header('Location: http://localhost:63342/team39/merchandise_view.php');
+    } else {
+        echo "Login Failed";
+    }
 }
 echo $execute;
 

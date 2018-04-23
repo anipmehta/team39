@@ -25,10 +25,31 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style>
+
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button1 {border-radius: 12px;}
+        .button1:hover {
+            background: #2196F3;
+            color: white;
+        }
+    </style>
     <!--===============================================================================================-->
 </head>
 <body>
-<?php echo 'Hello World'; ?>
+
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
@@ -41,19 +62,17 @@
 					</span>
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" name="username">
-                    <span class="focus-input100" data-placeholder="Username"></span>
+                    <input class="input100" type="text" name="username" placeholder=" Username">
+
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Enter password">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
-						</span>
-                    <input class="input100" type="password" name="pass">
-                    <span class="focus-input100" data-placeholder="Password"></span>
+                <div class="wrap-input100 validate-input" >
+
+                    <input class="input100" type="password" name="pass" placeholder = "password">
+
                 </div>
 
-
+                <form class="w3-container w3-card-4">
 
                     <p>
                         <input class="w3-radio" type="radio" name="user" value="Customer" checked>
@@ -64,39 +83,20 @@
                     <p>
                         <input class="w3-radio" type="radio" name="user" value="Admin" >
                         <label>Admin</label></p>
-
-                <div class="container-login100-form-btn">
-                    <div class="wrap-login100-form-btn">
-                        <div class="login100-form-bgbtn"></div>
-                        <input type="submit" >
-                    </div>
-                </div>
+                    <input type="submit" class="button button1" onclick="valid"/>
+                </form>
+                <center>
 
 
+                </center>
             </form>
         </div>
     </div>
 </div>
 
 
-<div id="dropDownSelect1"></div>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<!--===============================================================================================-->
-<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/bootstrap/js/popper.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/daterangepicker/moment.min.js"></script>
-<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-<script src="js/main1.js"></script>
+
 
 </body>
 </html>

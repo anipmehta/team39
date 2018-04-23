@@ -11,8 +11,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Creative Portfolio & Agency Template is a simple Smooth Personal Portfolio and Agency Based Template" />
-    <meta name="keywords" content="Personal, Portfolio, Agency, Onepage, Html, Business" />
 
     <!--====== TITLE TAG ======-->
     <title>SalesPro</title>
@@ -32,8 +30,6 @@
     <!--====== MAIN STYLESHEETS ======-->
     <link href="style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
-
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -132,14 +128,7 @@ form.example::after {
 
 <body data-spy="scroll" data-target=".mainmenu-area" data-offset="90">
 
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <!--- PRELOADER -->
-    <div class="preeloader">
-        <div class="preloader-spinner"></div>
-    </div>
+   
 
     <!--SCROLL TO TOP-->
     <a href="#home" class="scrolltotop"><i class="fa fa-long-arrow-up"></i></a>
@@ -183,73 +172,38 @@ form.example::after {
                         <tr><th><h3><p>Filter : </p></h3></th>
                             <th><h3> <p id = "searchfilter"></p></h3></th><tr>
                     </table> 
+
+
+                    
+
+
                     <div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">Search with filters</button>
+                     <button onclick="myFunction()" class="dropbtn">Search with filters</button>
                       <div id="myDropdown" class="dropdown-content">
-                        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                        <a href="#date" onclick = "clickeddate()">Date</a>
-                        <a href="#price"onclick = "clickedprice()">Price</a>
-                        <a href="#country"onclick = "clickedcounrtry()">country</a>
-                        <a href="#item"onclick = "clickeditem()">Item</a>
+                        
+                        <span onclick = "clickeddate()">Date</span>
+                        <br>
+                        <span onclick = "clickedprice()">Price</span>
+                        <br>
+                        <span onclick = "clickedcounrtry()">country</span>
+                        <br>
+                        <span onclick = "clickeditem()">Item</span>
                         
                       </div>
                     </div><br><br>
                 </center>
-                    <form class="example" action="action_page.php">
+                    <form class="example" action="adminSearch.php" method="POST">
                       <input type="text" placeholder="Search.." name="search">
-                      <button type="submit"><i class="fa fa-search"></i></button>
+                      <button type="submit" onclick="<?php ?>"><i class="fa fa-search"></i></button>
                     </form>
                         <h4>Results</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><img src="img/instagram/insta_1.jpg" alt=""></a>
-                                <a href="#"><img src="img/instagram/insta_1.jpg" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="img/instagram/insta_2.jpg" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="img/instagram/insta_3.jpg" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="img/instagram/insta_4.jpg" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="img/instagram/insta_5.jpg" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="img/instagram/insta_6.jpg" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="img/instagram/insta_7.jpg" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="img/instagram/insta_8.jpg" alt=""></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="img/instagram/insta_9.jpg" alt=""></a>
-                            </li>
-                        </ul>
+
                     </div>
                 </div>
             </div>
             </section>
            
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
 
-    <!--====== PLUGINS JS ======-->
-    <script src="js/vendor/jquery.easing.1.3.js"></script>
-    <script src="js/vendor/jquery-migrate-1.2.1.min.js"></script>
-    <script src="js/vendor/jquery.appear.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/stellar.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/stellarnav.min.js"></script>
-    <script src="js/contact-form.js"></script>
-    <script src="js/jquery.sticky.js"></script>
 
 <script>
 /* When the user clicks on the button,
@@ -290,10 +244,7 @@ function filterFunction() {
     }
 }
 </script>
-    <!--===== ACTIVE JS=====-->
-    <script src="js/main.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTS_KEDfHXYBslFTI_qPJIybDP3eceE-A&sensor=false"></script>
-    <script src="js/maps.active.js"></script>
+
 </body>
 
 </html>
