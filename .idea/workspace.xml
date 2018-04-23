@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5598ce2a-5227-437f-bc56-8869e1c5ae43" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-light-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-light-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-light-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-light-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-light-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-medium-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-medium-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-medium-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-medium-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-medium-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-regular-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-regular-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-regular-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-regular-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/roboto-regular-webfont.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer_suggestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/customer_suggestion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/customer_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/validUser.php" afterDir="false" />
-    </list>
+    <list default="true" id="5598ce2a-5227-437f-bc56-8869e1c5ae43" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -125,8 +100,8 @@
       <file leaf-file-name="customer_suggestion.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/customer_suggestion.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+            <state>
+              <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -275,12 +250,12 @@
       <workItem from="1524245253611" duration="1634000" />
       <workItem from="1524270620086" duration="8982000" />
       <workItem from="1524342728918" duration="821000" />
-      <workItem from="1524343992951" duration="52791000" />
+      <workItem from="1524343992951" duration="53066000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74633000" />
+    <option name="totallyTimeSpent" value="74908000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="68" y="-6" width="1474" height="877" extended-state="6" />
@@ -292,8 +267,8 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32839838" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15183616" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32839838" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15183616" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32980227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -705,8 +680,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/customer_suggestion.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        <state>
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
