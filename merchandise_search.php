@@ -1,30 +1,40 @@
-<?php include("config.php"); ?>
 <?php
 /**
  * Created by PhpStorm.
  * User: Chuan
- * Date: 4/22/2018
- * Time: 12:16 PM
+ * Date: 4/23/2018
+ * Time: 7:45 AM
  */
+session_start();
+echo "User Id  ". $_SESSION['userId'];
+$conn = oci_connect($username = 'chuan', $password = 'UNCBiostat2018!', $connection_string = '//oracle.cise.ufl.edu/orcl');
 
-//$conn = oci_connect($username = 'chuan', $password = 'UNCBiostat2018!', $connection_string = '//oracle.cise.ufl.edu/orcl');
-//
-//if (!$conn) {
-//    $e = oci_error();
-//    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-//}
+if (!$conn) {
+    $e = oci_error();
+    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+}
 echo "Connected";
-echo $type;
+//echo $type;
 $query = null;
 $execute = null;
 $row = null;
-echo $conn;
-$country = $_POST['search'];
-//$country = 'Norway';
-echo $country;
+$filter = null;
+//echo $conn;
+$search_value =  $_POST['search'];
+$filter = $_POST['filter'];
+//echo $filter;
+//$country = 'United Kingdom';
+//echo $country;
 $dataRow = "";
-$queryString = 'select * from trans,person where person.country_name=\'' . $country . '\' and person.USER_ID=trans.USER_ID';
-echo $queryString;
+if($filter == 'Price'){
+    $queryString = 'select * from(select * from item join trans ON \''.$_SESSION['userId'].'\' =trans.item_stock_code where trans.price=\'' . $search_value . '\') where rownum < 100';
+    echo $queryString;
+}
+elseif($filter == 'Date'){
+    $queryString = 'select * from(select * from person join trans ON \''.$_SESSION['userId'].'\' =trans.item_stock_code where trans.transaction_time LIKE \'%' . $search_value . '%\'  ) where rownum < 100';
+}
+
+//    echo $queryString;
 //echo "SELECT * FROM MERCHANDISE WHERE STOCKCODE =\"".$user."\" AND PASSCODE=\"".$pass."\"";
 $query = oci_parse($conn, $queryString);
 $execute = oci_execute($query);
@@ -32,25 +42,19 @@ if (!$execute) {
     $e = oci_error($query);
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
-//$row = oci_num_rows($execute);
-//print "<table border='1'>\n";
-print "<table border='1'>\n";
-while ($row1 = oci_fetch_array($query, OCI_BOTH)!=false) {
+
+while (($row = oci_fetch_array($query, OCI_BOTH)) != false) {
 //    print "<tr>\n";
 //    foreach ($row as $item) {
 //    echo $row[0]."\n";
-//    $dataRow = $dataRow . "<tr><td>$row1[0]</td><td>$row1[1]</td><td>$row1[2]</td><td>$row1[3]</td><td>$row1[4]</td><td>$row1[5]</td><td>" . $row1['TRANSACTION_MONTH'] . "</td><td>" . $row1['COUNTRY_NAME'] . "</td></tr>";
-    $dataRow = $dataRow . "<td>" . $row1[0] . "</td>";
-//    $dataRow = $dataRow . "<tr><td>" . $row1['TRANSACTION_MONTH'] . "</td></tr>";
+    // $dataRow = $dataRow . "<tr><td>" . $row['COUNTRY_NAME'] . "</td></tr>";
+    $dataRow = $dataRow . "<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td><td>$row[4]</td><td>$row[5]</td><td>$row[7]</td><td>".$row[8]."</td></tr>";
+//        $dataRow = $dataRow . "<tr><td>" . $row1['TRANSACTION_MONTH'] . "</td></tr>";
 //        echo "fgdf".$dataRow;
 //        print "    <td>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
 //    }
 //    print "</tr>\n";
 }
-
-
-//echo "Hello ".$dataRow;
-//print "</table>\n";
 //oci_free_statement($query);
 //oci_close($conn);
 ?>
@@ -214,13 +218,13 @@ while ($row1 = oci_fetch_array($query, OCI_BOTH)!=false) {
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="#home" class="navbar-brand"><img src="img/logo.png" alt="logo"></a>
+                        <a href="" class="navbar-brand"><img src="img/logo.png" alt="logo"></a>
                     </div>
                     <div id="main-nav" class="stellarnav">
                         <ul id="nav" class="nav navbar-nav">
-                            <li class="active"><a href="admin.html">home</a></li>
+                            <li class="active"><a href="merchandise.php">home</a></li>
 
-                            <li><a href="login.html">Log out</a></li>
+                            <li><a href="login.php">Log out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -238,46 +242,39 @@ while ($row1 = oci_fetch_array($query, OCI_BOTH)!=false) {
 
             <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 col-sm-12 col-xs-12">
 
-                <center>
-                    <table >
-                        <tr><th><h3><p>Filter : </p></h3></th>
-                            <th><h3> <p id = "searchfilter"></p></h3></th><tr>
-                    </table>
+
+
+                <br><br>
 
 
 
+                <form class="example" action="merchandise_search.php" method="post">
+                    <center>
+                        <p>
+                            &nbsp;&nbsp;
+                            <input class="w3-radio" type="radio" name="filter" value="Date">
+                            <label>Date</label>
+                            &nbsp;&nbsp;
+                            <input class="w3-radio" type="radio" name="filter" value="Price" >
+                            <label>Price</label>
+                            &nbsp;&nbsp;
 
-
-                    <div class="dropdown">
-                        <button onclick="myFunction()" class="dropbtn">Search with filters</button>
-                        <div id="myDropdown" class="dropdown-content">
-
-                            <span onclick = "clickeddate()">Date</span>
-                            <br>
-                            <span onclick = "clickedprice()">Price</span>
-                            <br>
-                            <span onclick = "clickedcounrtry()">country</span>
-                            <br>
-                            <span onclick = "clickeditem()">Item</span>
-
-                        </div>
-                    </div><br><br>
-                </center>
-                <form class="example" action="adminSearch.php" method="post">
+                    </center>
                     <input type="text" placeholder="Search.." name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
                 <h4>Results</h4>
                 <table>
                     <tr>
+                        <th>User Id</th>
+                        <th>Country</th>
                         <th>Transaction Id</th>
                         <th>Price</th>
                         <th>Quantity</th>
-                        <th>Transaction Time</th>
-                        <th>User Id</th>
+                        <th>Date</th>
                         <th>Stock Code</th>
-                        <th>MONTH</th>
-                        <th>Country</th>
+                        <th>Month</th>
+
                     </tr>
                     <?php echo $dataRow;?>
                 </table>
@@ -285,52 +282,6 @@ while ($row1 = oci_fetch_array($query, OCI_BOTH)!=false) {
         </div>
     </div>
 </section>
-
-
-
-<script>
-    /* When the user clicks on the button,
-    toggle between hiding and showing the dropdown content */
-
-    function clickeddate(){
-        document.getElementById("searchfilter").innerHTML = "date";
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-    function clickedprice(){
-        document.getElementById("searchfilter").innerHTML = "price";
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-    function clickedcounrtry(){
-        document.getElementById("searchfilter").innerHTML = "country";
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-    function clickeditem(){
-        document.getElementById("searchfilter").innerHTML = "item";
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    function filterFunction() {
-        var input, filter, ul, li, a, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        div = document.getElementById("myDropdown");
-        a = div.getElementsByTagName("a");
-        for (i = 0; i < a.length; i++) {
-            if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                a[i].style.display = "";
-            } else {
-                a[i].style.display = "none";
-            }
-        }
-    }
-</script>
-
 </body>
 
 </html>
-
-
-

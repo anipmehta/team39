@@ -13,15 +13,11 @@ $filter = null;
 //echo $conn;
 $search_value =  $_POST['search'];
 $filter = $_POST['filter'];
-//echo $filter;
-//$country = 'United Kingdom';
-//echo $country;
 $dataRow = "";
 $queryTrending = 'select * from(select * from(select TRANS.PRICE,ITEM.NAME,ITEM.STOCK_CODE,SUM(TRANS.QUANTITY) as total 
 from (TRANS join ITEM on STOCK_CODE = ITEM_STOCK_CODE) group by ITEM.STOCK_CODE,ITEM.NAME,TRANS.PRICE) order by total
  DESC) where rownum < 6';
 
-echo $queryTrending;
 if($filter == 'Price'){
     $queryString = 'select * from(select * from trans natural join person where trans.price=\'' . $search_value . '\' ) where rownum < 100';
     $queryTrending = 'select * from(select distinct(NAME) ,MIN(price), code from(select * from(select ITEM.NAME as name,TRANS.PRICE as price,ITEM.STOCK_CODE as code from
@@ -222,13 +218,13 @@ oci_close($conn);
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="#home" class="navbar-brand"><img src="img/logo.png" alt="logo"></a>
+                        <a href="#" class="navbar-brand"><img src="img/logo.png" alt="logo"></a>
                     </div>
                     <div id="main-nav" class="stellarnav">
                         <ul id="nav" class="nav navbar-nav">
-                            <li class="active"><a href="admin.html">home</a></li>
+                            <li class="active"><a href="customer.php">home</a></li>
 
-                            <li><a href="login.html">Log out</a></li>
+                            <li><a href="login.php">Log out</a></li>
                         </ul>
                     </div>
                 </div>

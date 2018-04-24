@@ -3,68 +3,28 @@
  * Created by PhpStorm.
  * User: Chuan
  * Date: 4/23/2018
- * Time: 7:45 AM
+ * Time: 8:29 PM
  */
-session_start();
-echo "User Id  ". $_SESSION['userId'];
-$conn = oci_connect($username = 'chuan', $password = 'UNCBiostat2018!', $connection_string = '//oracle.cise.ufl.edu/orcl');
-
-if (!$conn) {
-    $e = oci_error();
-    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-}
-echo "Connected";
-//echo $type;
-$query = null;
-$execute = null;
-$row = null;
-$filter = null;
-//echo $conn;
-$search_value =  $_POST['search'];
-$filter = $_POST['filter'];
-//echo $filter;
-//$country = 'United Kingdom';
-//echo $country;
-$dataRow = "";
-if($filter=='Country'){
-    $queryString = 'select * from(select * from person join trans ON person.user_id=trans.user_id where person.country_name=\'' . $search_value . '\'  AND person.user_id='.$_SESSION['userId'].' ) where rownum < 100';
-    echo $queryString;
-}
-elseif($filter == 'Item'){
-    $queryString = 'select * from(select * from person join trans ON person.user_id=trans.user_id  where trans.item_stock_code=\'' . $search_value . '\' AND person.user_id='.$_SESSION['userId'].' ) where rownum < 100';
-}
-elseif($filter == 'Price'){
-    $queryString = 'select * from(select * from person join trans ON person.user_id=trans.user_id where trans.price=\'' . $search_value . '\' AND person.user_id='.$_SESSION['userId'].' ) where rownum < 100';
-}
-elseif($filter == 'Date'){
-    $queryString = 'select * from(select * from person join trans ON person.user_id=trans.user_id where trans.transaction_time LIKE \'%' . $search_value . '%\' AND person.user_id='.$_SESSION['userId'].' ) where rownum < 100';
-}
-
-//    echo $queryString;
-//echo "SELECT * FROM MERCHANDISE WHERE STOCKCODE =\"".$user."\" AND PASSCODE=\"".$pass."\"";
+include("config.php");
+include("fusioncharts.php");
+$xLabel = "Month(in numbers)";
+$yLabel = "Total Sales";
+$labelGraph = "Sales trends of last year";
+$queryString = 'select * from(
+                    select transaction_month, sum(quantity) total_quantity
+                    from trans,item
+                    where TRANS.ITEM_STOCK_CODE=ITEM.STOCK_CODE and  item_stock_code =\'22423\'
+                    group by transaction_year,transaction_month
+                    order by transaction_year, CAST(transaction_month AS INT))
+                    where rownum<13';
 $query = oci_parse($conn, $queryString);
 $execute = oci_execute($query);
 if (!$execute) {
     $e = oci_error($query);
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
+?>
 
-while (($row = oci_fetch_array($query, OCI_BOTH)) != false) {
-//    print "<tr>\n";
-//    foreach ($row as $item) {
-//    echo $row[0]."\n";
-    // $dataRow = $dataRow . "<tr><td>" . $row['COUNTRY_NAME'] . "</td></tr>";
-    $dataRow = $dataRow . "<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td><td>$row[4]</td><td>$row[5]</td><td>$row[7]</td><td>".$row[8]."</td></tr>";
-//        $dataRow = $dataRow . "<tr><td>" . $row1['TRANSACTION_MONTH'] . "</td></tr>";
-//        echo "fgdf".$dataRow;
-//        print "    <td>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
-//    }
-//    print "</tr>\n";
-}
-oci_free_statement($query);
-oci_close($conn);
-?>
-?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -86,6 +46,7 @@ oci_close($conn);
 
 
     <!--====== STYLESHEETS ======-->
+    <link  rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/stellarnav.min.css">
@@ -97,11 +58,59 @@ oci_close($conn);
     <!--====== MAIN STYLESHEETS ======-->
     <link href="style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="js/fusioncharts.js"></script>
     <style>
+        .custom-select {
+            position: relative;
+            font-family: Arial;
+        }
+        .custom-select select {
+            display: none; /*hide original SELECT element:*/
+        }
+        .select-selected {
+            background-color: DodgerBlue;
+        }
+        /*style the arrow inside the select element:*/
+        .select-selected:after {
+            position: absolute;
+            content: "";
+            top: 14px;
+            right: 10px;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            border-color: #fff transparent transparent transparent;
+        }
+        /*point the arrow upwards when the select box is open (active):*/
+        .select-selected.select-arrow-active:after {
+            border-color: transparent transparent #fff transparent;
+            top: 7px;
+        }
+        /*style the items (options), including the selected item:*/
+        .select-items div,.select-selected {
+            color: #ffffff;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+            cursor: pointer;
+            user-select: none;
+        }
+        /*style items (options):*/
+        .select-items {
+            position: absolute;
+            background-color: DodgerBlue;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 99;
+        }
+        /*hide the items when the select box is closed:*/
+        .select-hide {
+            display: none;
+        }
+        .select-items div:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
         * {
             box-sizing: border-box;
         }
@@ -190,21 +199,6 @@ oci_close($conn);
         .dropdown a:hover {background-color: #ddd}
 
         .show {display:block;}
-
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        tr:hover {background-color:#f5f5f5;}
-
     </style>
 </head>
 
@@ -229,9 +223,9 @@ oci_close($conn);
                     </div>
                     <div id="main-nav" class="stellarnav">
                         <ul id="nav" class="nav navbar-nav">
-                            <li class="active"><a href="customer.php">home</a></li>
+                            <li class="active"><a href="merchandise.php">home</a></li>
 
-                            <li><a href="login.php">Log out</a></li>
+                            <li><a href="logout.php">Log out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -248,49 +242,74 @@ oci_close($conn);
 
 
             <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 col-sm-12 col-xs-12">
+                <center>
+                <h3>Revenue for<br>last year</h3>
+                </center>
+            </div><br><br>
+                 <?php
+
+                    // Form the SQL query that returns the top 10 most populous countries
 
 
+                    // If the query returns a valid response, prepare the JSON string
 
-                <br><br>
+                    // The `$arrData` array holds the chart attributes and data
+                    $arrData = array(
+                        "chart" => array(
+                            "caption" => $labelGraph,
+                            "showValues"=> "0",
+                            "xaxisname" => $xLabel,
+                            "yaxisname" =>  $yLabel,
+                            "theme"=> "ocean"
+                        )
+                    );
 
+                    $arrData["data"] = array();
+                 while (($row = oci_fetch_array($query, OCI_BOTH)) != false){
+                 //        echo $row[0];
+                     array_push($arrData["data"], array(
+                             "label" => $row[0],
+                             "value" => $row[1],
+//                "link" => "countryDrillDown.php?Country=".$row["Code"]
+                         )
+                     );
+                 }
+                 $jsonEncodedData = json_encode($arrData);
 
-                <form class="example" action="customer_view.php" method="post">
-                    <center>
-                        <p>
-                            <input class="w3-radio" type="radio" name="filter" value="Country" checked>
-                            <label>Country</label>
-                            &nbsp;&nbsp;
-                            <input class="w3-radio" type="radio" name="filter" value="Date">
-                            <label>Date</label>
-                            &nbsp;&nbsp;
-                            <input class="w3-radio" type="radio" name="filter" value="Price" >
-                            <label>Price</label>
-                            &nbsp;&nbsp;
-                            <input class="w3-radio" type="radio" name="filter" value="Item" >
-                            <label>Item</label></p>
-                    </center>
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
-                <h4>Results</h4>
-                <table>
-                    <tr>
-                        <th>User Id</th>
-                        <th>Country</th>
-                        <th>Transaction Id</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Date</th>
-                        <th>Stock Code</th>
-                        <th>Month</th>
+                 /*Create an object for the column chart. Initialize this object using the FusionCharts PHP class constructor. The constructor is used to initialize the chart type, chart id, width, height, the div id of the chart container, the data format, and the data source. */
 
-                    </tr>
-                    <?php echo $dataRow;?>
-                </table>
+                 $columnChart = new FusionCharts("column2D", "myFirstChart" , 600, 300, "chart-1", "json", $jsonEncodedData);
+
+                 // Render the chart
+                 $columnChart->render();
+
+                 // Close the database connection
+                 oci_free_statement($query);
+                 oci_close($conn);
+
+                 ?>
+            <br><br>
+            <center>
+            <div id="chart-1">
+<!--                select * from(
+                    select transaction_month, sum(quantity) total_quantity
+                    from trans,item
+                    where TRANS.ITEM_STOCK_CODE=ITEM.STOCK_CODE and  item_stock_code ='22423'
+                    group by transaction_year,transaction_month
+                    order by transaction_year, CAST(transaction_month AS INT))
+                    where rownum<13;
+                    -->
             </div>
+            </center>
         </div>
     </div>
 </section>
+
+
+
 </body>
 
 </html>
+
+
+

@@ -51,7 +51,7 @@ echo $execute;
 if($type=='Customer'){
     if($execute>0 and $i == 1) {
         $_SESSION['userId'] = $user;
-        header('Location: http://localhost:63342/team39/customer_view.php');
+        header('Location: http://localhost:63342/team39/customer.php');
         echo "Login success with username " . $user . "and password " . $pass;
     }
     else {
@@ -61,7 +61,7 @@ if($type=='Customer'){
 else if($type=='Admin'){
     if($execute>0 and $i == 1) {
         $_SESSION['userId'] = $user;
-        header('Location: http://localhost:63342/team39/admin_search.php');
+        header('Location: http://localhost:63342/team39/admin.php');
         echo "Login success with username " . $user . "and password " . $pass;
     }
     else {
@@ -71,7 +71,7 @@ else if($type=='Admin'){
 else if($type=='Merchandise') {
     $_SESSION['userId'] = $user;
     if($execute>0 and $i == 1) {
-        header('Location: http://localhost:63342/team39/merchandise_view.php');
+        header('Location: http://localhost:63342/team39/merchandise.php');
     } else {
         echo "Login Failed";
     }

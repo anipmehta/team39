@@ -12,12 +12,8 @@ $query = null;
 $execute = null;
 $row = null;
 $filter = null;
-//echo $conn;
 $search_value =  $_POST['search'];
 $filter = $_POST['filter'];
-//echo $filter;
-//$country = 'United Kingdom';
-//echo $country;
 $dataRow = "";
 $xLabel = "";
 $yLabel = "";
@@ -69,37 +65,12 @@ where trans.user_id=person.user_id and person.country_name=country.name
 group by country.name
 order by sum(price*quantity) DESC)';
 }
-//elseif($filter == 'Price'){
-//    $queryString = 'select * from(select * from trans natural join person where trans.price=\'' . $search_value . '\' ) where rownum < 100';
-//}
-//elseif($filter == 'Date'){
-//    $queryString = 'select * from(select * from trans natural join person where trans.transaction_time LIKE \'%' . $search_value . '%\' ) where rownum < 100';
-//}
-
-//    echo $queryString;
-//echo "SELECT * FROM MERCHANDISE WHERE STOCKCODE =\"".$user."\" AND PASSCODE=\"".$pass."\"";
 $query = oci_parse($conn, $queryString);
 $execute = oci_execute($query);
 if (!$execute) {
     $e = oci_error($query);
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
-
-//while (($row = oci_fetch_array($query, OCI_BOTH)) != false) {
-////    print "<tr>\n";
-////    foreach ($row as $item) {
-////    echo $row[0]."\n";
-//    // $dataRow = $dataRow . "<tr><td>" . $row['COUNTRY_NAME'] . "</td></tr>";
-//    $dataRow = $dataRow . "<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td><td>$row[4]</td><td>$row[5]</td><td>$row[6]</td><td>".$row['COUNTRY_NAME']."</td></tr>";
-////        $dataRow = $dataRow . "<tr><td>" . $row1['TRANSACTION_MONTH'] . "</td></tr>";
-////        echo "fgdf".$dataRow;
-////        print "    <td>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
-////    }
-////    print "</tr>\n";
-//}
-//oci_free_statement($query);
-//oci_close($conn);
-
 ?>
 <!--<html xmlns="http://www.w3.org/1999/html">-->
 <!--<head>-->
@@ -309,13 +280,13 @@ if (!$execute) {
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="#home" class="navbar-brand"><img src="img/logo.png" alt="logo"></a>
+                        <a href="" class="navbar-brand"><img src="img/logo.png" alt="logo"></a>
                     </div>
                     <div id="main-nav" class="stellarnav">
                         <ul id="nav" class="nav navbar-nav">
-                            <li class="active"><a href="admin.html">home</a></li>
+                            <li class="active"><a href="admin.php">home</a></li>
 
-                            <li><a href="login.html">Log out</a></li>
+                            <li><a href="login.php">Log out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -377,7 +348,7 @@ if (!$execute) {
 
                             <!-- <input type="text" placeholder="Search.." name="search"> -->
 
-                            <input type="submit"><i class="fa fa-bar-chart"></i></button>
+                            <input type="submit">
 
                         </center>
                     </form>
@@ -400,7 +371,6 @@ if (!$execute) {
                     );
 
                     $arrData["data"] = array();
-                    echo "Reached";
                     // Push the data into the array
 
                     while (($row = oci_fetch_array($query, OCI_BOTH)) != false){

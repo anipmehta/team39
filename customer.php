@@ -3,29 +3,9 @@
  * Created by PhpStorm.
  * User: Chuan
  * Date: 4/23/2018
- * Time: 7:56 PM
+ * Time: 6:58 PM
  */
-include "config.php";
-session_start();
-if(isset($_POST['button'])){
-    $queryString = ' select distinct * from ((select ITEM_STOCK_CODE, transaction_id, transaction_time from trans where
-  user_id ='.$_POST['search'].' and ITEM_STOCK_CODE = \''.$_SESSION['userId'].'\' group by transaction_id,ITEM_STOCK_CODE, transaction_time )
-                            natural join (select * from person where person.USER_ID ='.$_POST['search'].' ) )';
-    $query = oci_parse($conn, $queryString);
-    $execute = oci_execute($query);
-    if (!$execute) {
-        $e = oci_error($query);
-        trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-    }
-    while (($row = oci_fetch_array($query, OCI_BOTH)) != false) {
-        $dataRow = $dataRow . "<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td><td>$row[4]</td></tr>";
-    }
-}
-
-oci_free_statement($query);
-oci_close($conn);
 ?>
-
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -66,58 +46,10 @@ oci_close($conn);
     <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        /* Style the search field */
-        form.example input[type=text] {
-            padding: 10px;
-            font-size: 17px;
-            border: 1px solid grey;
-            float: left;
-            width: 80%;
-            background: #f1f1f1;
-        }
-
-        /* Style the submit button */
-        form.example button {
-            float: left;
-            width: 20%;
-            padding: 10px;
-            background: #2196F3;
-            color: white;
-            font-size: 17px;
-            border: 1px solid grey;
-            border-left: none; /* Prevent double borders */
-            cursor: pointer;
-        }
-
-        form.example button:hover {
-            background: #0b7dda;
-        }
-
-        /* Clear floats */
-        form.example::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        tr:hover {background-color:#f5f5f5;}
         .dropbtn {
-            background-color: #4CAF50;
+            background-color: #1aa3ff;
             color: white;
             padding: 16px;
             font-size: 16px;
@@ -126,12 +58,12 @@ oci_close($conn);
         }
 
         .dropbtn:hover, .dropbtn:focus {
-            background-color: #3e8e41;
+            background-color: #004d80;
         }
 
         #myInput {
             border-box: box-sizing;
-
+            background-image: url('searchicon.png');
             background-position: 14px 12px;
             background-repeat: no-repeat;
             font-size: 16px;
@@ -176,6 +108,13 @@ oci_close($conn);
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
+<!--- PRELOADER -->
+<div class="preeloader">
+    <div class="preloader-spinner"></div>
+</div>
+
+<!--SCROLL TO TOP-->
+<a href="#home" class="scrolltotop"><i class="fa fa-long-arrow-up"></i></a>
 
 <!--START TOP AREA-->
 <header class="top-area" id="home">
@@ -187,11 +126,11 @@ oci_close($conn);
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="#home" class="navbar-brand"><img src="img/logo.png" alt="logo"></a>
+                        <a href="" class="navbar-brand"><img src="img/logo.png" alt="logo"></a>
                     </div>
                     <div id="main-nav" class="stellarnav">
                         <ul id="nav" class="nav navbar-nav">
-                            <li class="active"><a href="merchandise.php">home</a></li>
+                            <li class="active"><a href="">home</a></li>
 
                             <li><a href="login.php">Log out</a></li>
                         </ul>
@@ -204,53 +143,69 @@ oci_close($conn);
 </header>
 <!--END TOP AREA-->
 
-<section class="team-area padding-100-70" id="team">
+
+
+<!--SERVICE TOP AREA-->
+<section class="service-top-area padding-100-50" id="features">
     <div class="container">
+
         <div class="row">
+            <!-- The form -->
 
-            <div class="contact-form mb50 wow fadeIn">
-                <h2>Search</h2>
 
-                <center>
-                <form action="merchandise_view.php" id="contact-form" method="post">
-                    <div class="form-group" id="name-field">
-                        <div class="form-input">
-                            <input type="text" class="form-control" id="form-name" name="search" placeholder="Look up by Customer ID.." required>
-                        </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+                <div class="single-service text-center wow fadeIn">
+                    <div class="service-icon">
+                        <div class="i fa fa-shopping-cart"></div>
                     </div>
-
-                    <div class="form-group">
-                        <input type="submit" value="Search" name="button"></input>
-                    </div>
-                </form>
-                </center>
+                    <h3>View Orders</h3>
+                    <p>Click to view my orders</p>
+                    <a href="customer_view.php" class="read-more">View</a>
+                </div>
             </div>
-
-
-
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 col-sm-12 col-xs-12">
-                <div class="area-title text-center wow fadeIn">
-                    <h2>Customer Details</h2>
-                    <table>
-                        <tr>
-                            <th>Stock code</th>
-                            <th>Transaction ID</th>
-                            <th>Transaction TIme</th>
-                            <th>User Id</th>
-                            <th>Country</th>
-                        </tr>
-                        <?php echo $dataRow;?>
-<!--                        select distinct * from ((select ITEM_STOCK_CODE, transaction_id, transaction_time from trans where user_id = 17920 and ITEM_STOCK_CODE = '22940' group by transaction_id,ITEM_STOCK_CODE, transaction_time )
-                            natural join (select * from person where person.USER_ID = 17920 ));-->
-                    </table>
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+                <div class="single-service text-center wow fadeIn">
+                    <div class="service-icon">
+                        <div class="i fa fa-puzzle-piece"></div>
+                    </div>
+                    <h3>Suggestions</h3>
+                    <p>Items related to your orders, you might like</p>
+                    <a href="customer_suggestion.php" class="read-more">Learn More</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <div class="single-service text-center wow fadeIn">
+                    <div class="service-icon">
+                        <div class="i fa fa-line-chart"></div>
+                    </div>
+                    <h3>Trending</h3>
+                    <p>Look up what people are buying</p>
+                    <a href="customer_trending.php" class="read-more">Learn More</a>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 </section>
+<!--SERVICE TOP AREA END-->
+
+
+<!--====== SCRIPTS JS ======-->
+<script src="js/vendor/jquery-1.12.4.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+
+<!--====== PLUGINS JS ======-->
+<script src="js/vendor/jquery.easing.1.3.js"></script>
+<script src="js/vendor/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/vendor/jquery.appear.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/stellar.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/isotope.pkgd.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/stellarnav.min.js"></script>
+<script src="js/contact-form.js"></script>
+<script src="js/jquery.sticky.js"></script>
 
 <!--===== ACTIVE JS=====-->
 <script src="js/main.js"></script>

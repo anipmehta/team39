@@ -244,13 +244,13 @@ oci_close($conn);
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="#home" class="navbar-brand"><img src="img/logo.png" alt="logo"></a>
+                        <a href="" class="navbar-brand"><img src="img/logo.png" alt="logo"></a>
                     </div>
                     <div id="main-nav" class="stellarnav">
                         <ul id="nav" class="nav navbar-nav">
-                            <li class="active"><a href="admin.html">home</a></li>
+                            <li class="active"><a href="admin.php">home</a></li>
 
-                            <li><a href="login.html">Log out</a></li>
+                            <li><a href="login.php">Log out</a></li>
                         </ul>
                     </div>
                 </div>
