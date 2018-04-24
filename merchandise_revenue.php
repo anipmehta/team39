@@ -7,13 +7,15 @@
  */
 include("config.php");
 include("fusioncharts.php");
+session_start();
 $xLabel = "Month(in numbers)";
 $yLabel = "Total Sales";
 $labelGraph = "Sales trends of last year";
+echo $_SESSION['userId'];
 $queryString = 'select * from(
                     select transaction_month, sum(quantity) total_quantity
                     from trans,item
-                    where TRANS.ITEM_STOCK_CODE=ITEM.STOCK_CODE and  item_stock_code =\'22423\'
+                    where TRANS.ITEM_STOCK_CODE=ITEM.STOCK_CODE and  item_stock_code =\''.$_SESSION['userId'].'\'
                     group by transaction_year,transaction_month
                     order by transaction_year, CAST(transaction_month AS INT))
                     where rownum<13';
