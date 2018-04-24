@@ -13,3 +13,4 @@ if (!$conn) {
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
 echo "Connected";
+$server_name = "https://www.cise.ufl.edu/~tpathak/team39";

@@ -6,6 +6,7 @@
  * Date: 4/14/2018
  * Time: 11:29 AM
  */
+include "config.php";
 session_start();
 $user = $_POST['username'];
 $pass = $_POST['pass'];
@@ -52,7 +53,7 @@ echo $execute;
 if($type=='Customer'){
     if($execute>0 and $i == 1) {
         $_SESSION['userId'] = $user;
-        header('Location: http://localhost:63342/team39/customer.php');
+        header('Location: '.$server_name.'/customer.php');
         echo "Login success with username " . $user . "and password " . $pass;
     }
     else {
@@ -62,7 +63,7 @@ if($type=='Customer'){
 else if($type=='Admin'){
     if($execute>0 and $i == 1) {
         $_SESSION['userId'] = $user;
-        header('Location: http://localhost:63342/team39/admin.php');
+        header('Location: '.$server_name.'/admin.php');
         echo "Login success with username " . $user . "and password " . $pass;
     }
     else {
@@ -72,7 +73,7 @@ else if($type=='Admin'){
 else if($type=='Merchandise') {
     $_SESSION['userId'] = $user;
     if($execute>0 and $i == 1) {
-        header('Location: http://localhost:63342/team39/merchandise.php');
+        header('Location: '.$server_name.'/merchandise.php');
     } else {
         echo "Login Failed";
     }
