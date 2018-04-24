@@ -1,3 +1,4 @@
+#!/usr/local/bin/php
 <?php //include("config.php"); ?>
 <?php
 /**

@@ -1,3 +1,4 @@
+#!/usr/local/bin/php
 <?php
 /**
  * Created by PhpStorm.
@@ -227,7 +228,7 @@ if (!$execute) {
                         <ul id="nav" class="nav navbar-nav">
                             <li class="active"><a href="merchandise.php">home</a></li>
 
-                            <li><a href="logout.php">Log out</a></li>
+                            <li><a href="login.php">Log out</a></li>
                         </ul>
                     </div>
                 </div>
